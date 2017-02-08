@@ -32,6 +32,20 @@ font-family: "OmePlus-P", "HGS明朝E", "ヒラギノ明朝 Pro W6","Hiragino Mi
 .tab:visited { color: #ffffff; text-decoration: none; }
 .tab:hover { color: #ffffff; text-decoration: none; }
 .tab:active { color: #ffffff; text-decoration: none; }
+.app:link { color: #ffffff; }
+.app:visited { color: #ffffff; }
+.app:hover { color: #dfdfdf; }
+.app:active { color: #ffffff; }
+table {
+font-size: 24px;
+border-collapse: collapse;
+}
+td {
+border: solid 3px;
+border-color: #cd4326;
+padding: 0.5em;
+text-align: center;
+}
 </style>
 </head>
 <body>
@@ -50,21 +64,34 @@ font-family: "OmePlus-P", "HGS明朝E", "ヒラギノ明朝 Pro W6","Hiragino Mi
 <div style="background-color: #d0682b; color: #ffffff; width: 90px; height: 36px; position: relative; left: 90px; top: -36px;">
 <a class="tab" href='applist.html' style="font-size: 30px;">アプリ</a>
 </div>
-<div style="background-color: #d29b36; color: #ffffff; position: relative; left: 0px; top: -36px;">
-ようこそ<br>
-音子麻です。<br>
-このページではwebアプリとかを趣味で作ってます。<br>
-46nekoProjectの後サイトです。<br>
-内容は基本的に変わりませんが、今後の更新はすべてこちらで行います。<br>
-前サイトでは結構正常に見れないブラウザが多かったですが、今度は大体のブラウザで見れると思います。<br>
-よろしくお願いします。<br>
-<div style="margin:8px 8px 0px 8px;">
-<div style="width: 100%; font-size:24px; background-color: #c7ad74;">最新情報</div>
-<div style="width: 100%; height: 200px; background-color: #c7ad74; overflow:auto;">
-絵画作成ツールを追加しました。<br>
-46nekoProjectを改めmeamとなりました。
-</div>
-</div>
+<div style="background-color: #d0682b; color: #ffffff; position: relative; left: 0px; top: -36px;">
+<div style="height: 8px;"></div>
+<center><table>
+<tr>
+<td>アプリ</td>
+<td>概要</td>
+</tr>
+<tr>
+<td><a class="app" href="apps/kz.pngMaker/index.html" target="_blank">絵画作成ツール</a></td>
+<td>MCPEの絵画を簡単に編集するキットです。</td>
+</tr>
+<tr>
+<td><a class="app" href="apps/JavaScriptSpeedTest/index.html" target="_blank">JavaScriptSpeedTest</a></td>
+<td>指定した回数処理を繰り返して処理速度の平均値を簡単に求められます。</td>
+</tr>
+<tr>
+<td><a class="app" href="apps/ToneCubes/index.html" target="_blank">ToneCubes</a></td>
+<td>自由に譜面を作成できるリズムゲームです。web版とMCPE版があります。</td>
+</tr>
+<tr>
+<td><a class="app" href="apps/CrossVersionMods/index.html" target="_blank">Cross version mod project</a></td>
+<td>クロスバージョン化はプレイヤーの負担軽減につながります。</td>
+</tr>
+<tr>
+<td><a class="app" href="apps/smaphone/index.html" target="_blank">smaphone</a></td>
+<td>あなたのスマホがシンセサイザーに。</td>
+</tr>
+</table></center>
 <div style="height: 8px;"></div>
 </div>
 <div id="minitoolwindow" style="position: absolute; right: 0px; top: 90px; display: none;">
