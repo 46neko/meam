@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>meam</title>
+<script>
+function closemt(){
+document.getElementById("minitoolwindow").style.display="none";
+}
+function openTool(url){
+document.getElementById("minitool").setAttribute("src",url);
+document.getElementById("minitoolwindow").style.display="block";
+}
+</script>
+<style>
+@font-face {
+font-family: "OmePlus-P";
+src: url('data/OmePlus-P-Gothic-light1.00000_subset.eot'),
+url('data/OmePlus-P-Gothic-light1.00000_subset.woff');
+}
+body {
+background-image: url("data/background.jpg");
+margin:0px;
+font-family: "OmePlus-P", "HGS明朝E", "ヒラギノ明朝 Pro W6","Hiragino Mincho Pro","ＭＳ Ｐ明朝",serif !important;
+}
+.closemt:link { color: #ffffff; text-decoration: none; }
+.closemt:visited { color: #ffffff; text-decoration: none; }
+.closemt:hover { color: #dfdfdf; text-decoration: none; }
+.closemt:active { color: #ffffff; text-decoration: none; }
+.tab:link { color: #ffffff; text-decoration: none; }
+.tab:visited { color: #ffffff; text-decoration: none; }
+.tab:hover { color: #ffffff; text-decoration: none; }
+.tab:active { color: #ffffff; text-decoration: none; }
+</style>
+</head>
+<body>
+<div style="background-color: #2f6585; color: #ffffff;">
+<span style="font-size: 60px;">meam</span><br>
+<span style="font-size: 16px;">Webツールとかを作ってます。見て行ってくれたらうれしいです。</span>
+<div style="float: right; position: relative; top: -1em;">
+<a style="float: right;" href='javascript:openTool("tools/screenrecorder.html");'><img src="data/ScreenRecordIcon.png" style="width: auto; height: 30px;"></a>
+<a style="float: right;" href='javascript:openTool("tools/manysearch.html");'><img src="data/search.png" style="width: auto; height: 30px;"></a>
+</div>
+</div>
+<div style="width: 100%; height: 50px;"></div>
+<div style="background-color: #d29b36; color: #ffffff; width: 90px; height: 36px;">
+<a class="tab" href='index.html' style="font-size: 30px;">ホーム</a>
+</div>
+<div style="background-color: #d0682b; color: #ffffff; width: 90px; height: 36px; position: relative; left: 90px; top: -36px;">
+<a class="tab" href='applist.html' style="font-size: 30px;">ツール</a>
+</div>
+<div style="background-color: #d29b36; color: #ffffff; position: relative; left: 0px; top: -36px;">
+ようこそ<br>
+音子麻です。<br>
+このページではwebツールとかを趣味で作ってます。<br>
+46nekoProjectの後サイトです。<br>
+内容は基本的に変わりませんが、今後の更新はすべてこちらで行います。<br>
+前サイトでは結構正常に見れないブラウザが多かったですが、今度は大体のブラウザで見れると思います。<br>
+よろしくお願いします。<br>
+<div style="margin:8px 8px 0px 8px;">
+<div style="width: 100%; font-size:24px; background-color: #c7ad74;">最新情報</div>
+<div style="width: 100%; height: 200px; background-color: #c7ad74; overflow:auto;">
+絵画作成ツールを追加しました。<br>
+46nekoProjectを改めmeamとなりました。
+</div>
+</div>
+<div style="height: 8px;"></div>
+</div>
+<div id="minitoolwindow" style="position: absolute; right: 0px; top: 90px; display: none;">
+<iframe id="minitool" src="" style="position: absolute; right: 0px; top: 0px; width: 500px; height: 300px; background-color: #cd4326;"></iframe>
+<a href='javascript:closemt();' class="closemt" style="position: absolute; right: 8px; top: 0px;">×</a>
+</div>
+<script>
+</script>
+</body>
+</html>
