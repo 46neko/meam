@@ -25,6 +25,7 @@ speechSynthesis.speak(synthes);
 document.getElementById("ninshiki").style.visibility="hidden";
 }, false);
 function start(){
+if(document.getElementById("dousa").style.visibility!="visible"){
 document.getElementById("dousa").style.visibility="visible";
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 navigator.getUserMedia(
@@ -52,6 +53,7 @@ requestAnimationFrame(animation);
 })();
 },console.log
 );
+}
 }
 function changeSpeed(value){
 speed=value;
@@ -106,8 +108,5 @@ Chrome推奨です。誤認識などこのシステムを利用したことに�
 <div id="result" style="width: 100%; height: 300px;"></div>
 </div></div>
 <div style="width: 100%; height: 30px;"></div>
-<script>
-
-</script>
 </body>
 </html>
