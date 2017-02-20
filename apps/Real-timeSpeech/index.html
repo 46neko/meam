@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>リアルタイムスピーチ</title>
+<script>
+var speed=1;
+var kando=500;
+var ninshiki=false;
+window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+var recognition = new webkitSpeechRecognition();
+recognition.lang = 'ja';
+recognition.addEventListener('result', function(event){
+ninshiki=false;
+document.getElementById("shusturyoku").style.visibility="visible";
+var text = event.results.item(0).item(0).transcript;
+document.getElementById("result").innerHTML=text+"<br>";
+var synthes = new SpeechSynthesisUtterance();
+synthes.rate = speed;
+synthes.text = text;
+synthes.onend = function(e) {
+document.getElementById("shusturyoku").style.visibility="hidden";
+};
+speechSynthesis.speak(synthes);
+document.getElementById("ninshiki").style.visibility="hidden";
+}, false);
+function start(){
+document.getElementById("dousa").style.visibility="visible";
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+navigator.getUserMedia(
+{audio : true},
+function(stream){
+document.querySelector('audio').src = URL.createObjectURL(stream);
+var audioContext = new AudioContext();
+var analyser = audioContext.createAnalyser();
+var timeDomain = new Float32Array(analyser.frequencyBinCount);
+var frequency = new Uint8Array(analyser.frequencyBinCount);
+audioContext.createMediaStreamSource(stream).connect(analyser);
+(function animation(){
+analyser.getFloatTimeDomainData(timeDomain);
+analyser.getByteFrequencyData(frequency);
+var all=0;
+for(var i=0; i<frequency.length; i++){
+all+=frequency[i];
+if(all>1000-kando&&!ninshiki){
+document.getElementById("ninshiki").style.visibility="visible";
+recognition.start();
+ninshiki=true;
+}
+}
+requestAnimationFrame(animation);
+})();
+},console.log
+);
+}
+function changeSpeed(value){
+speed=value;
+}
+function changeKando(value){
+kando=value;
+}
+</script>
+<style>
+@font-face {
+font-family: "OmePlus-P";
+src: url('data/OmePlus-P-Gothic-light1.00000_subset.eot'),
+url('data/OmePlus-P-Gothic-light1.00000_subset.woff');
+}
+body {
+background-image: url("data/background.jpg");
+margin:0px;
+font-family: "OmePlus-P", "HGS明朝E", "ヒラギノ明朝 Pro W6","Hiragino Mincho Pro","ＭＳ Ｐ明朝",serif !important;
+}
+.makebtn {
+text-decoration: none;
+font-weight: bold;
+text-align: center;
+font-size: 13px;
+display: inline-block;
+border-top: 5px solid #C00;
+border-left: 5px solid #09C;
+border-right: 5px solid #9C0;
+border-bottom: 5px solid #FC0;
+color:#111;
+width: 100px;
+padding: 10px 0;
+}
+</style>
+</head>
+<body>
+<audio muted></audio>
+<div style="background-color: #ffffff;">
+<span style="font-size: 60px;">リアルタイムスピーチ</span><br>
+Chrome推奨です。誤認識などこのシステムを利用したことによる損害は一切保証しません。
+</div>
+<div style="width: 100%; height: 50px;"></div>
+<div style="background-color: #ffffff; width: 100%; display: inline-block;"><div style="margin:8px;">
+<a class="makebtn" href="javascript:start();">開始</a>
+スピード:<input type="range" min="0" max="2" step="0.1" value="1" onchange="changeSpeed(this.value)">
+感度:<input type="range" min="0" max="1000" step="1" value="500" onchange="changeKando(this.value)">
+<hr>
+<div id="dousa" style="display: inline-block; visibility: hidden;">動作中</div>
+<div id="ninshiki" style="color: #228b22; display: inline-block; visibility: hidden;">認識中</div>
+<div id="shusturyoku" style="color: #cc0000; display: inline-block; visibility: hidden;">出力中</div><br>
+認識結果:
+<div id="result" style="width: 100%; height: 300px;"></div>
+</div></div>
+<div style="width: 100%; height: 30px;"></div>
+<script>
+
+</script>
+</body>
+</html>
