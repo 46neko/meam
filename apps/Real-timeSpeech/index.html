@@ -10,20 +10,36 @@ var ninshiki=false;
 window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
 var recognition = new webkitSpeechRecognition();
 recognition.lang = 'ja';
-recognition.addEventListener('result', function(event){
-document.getElementById("shusturyoku").style.visibility="visible";
+recognition.onresult = function(event) {
 var text = event.results.item(0).item(0).transcript;
+recognition.stop();
+ninshiki=false;
+document.getElementById("ninshiki").style.visibility="hidden";
+document.getElementById("shusturyoku").style.visibility="visible";
 document.getElementById("result").innerHTML=text+"<br>"+document.getElementById("result").innerHTML;
 var synthes = new SpeechSynthesisUtterance();
 synthes.rate = speed;
 synthes.text = text;
 synthes.onend = function(e) {
-ninshiki=false;
 document.getElementById("shusturyoku").style.visibility="hidden";
 };
 speechSynthesis.speak(synthes);
+}
+recognition.onspeechend = function() {
+recognition.stop();
+ninshiki=false;
 document.getElementById("ninshiki").style.visibility="hidden";
-}, false);
+}
+
+recognition.onnomatch = function(event) {
+ninshiki=false;
+document.getElementById("ninshiki").style.visibility="hidden";
+}
+
+recognition.onerror = function(event) {
+ninshiki=false;
+document.getElementById("ninshiki").style.visibility="hidden";
+}
 function start(){
 if(document.getElementById("dousa").style.visibility!="visible"){
 document.getElementById("dousa").style.visibility="visible";
