@@ -13,7 +13,7 @@ recognition.lang = 'ja';
 recognition.addEventListener('result', function(event){
 document.getElementById("shusturyoku").style.visibility="visible";
 var text = event.results.item(0).item(0).transcript;
-document.getElementById("result").innerHTML=text+"<br>";
+document.getElementById("result").innerHTML=text+"<br>"+document.getElementById("result").innerHTML;
 var synthes = new SpeechSynthesisUtterance();
 synthes.rate = speed;
 synthes.text = text;
@@ -42,7 +42,7 @@ analyser.getByteFrequencyData(frequency);
 var all=0;
 for(var i=0; i<frequency.length; i++){
 all+=frequency[i];
-if(all>1000-kando&&!ninshiki){
+if(all>10000-kando&&!ninshiki){
 document.getElementById("ninshiki").style.visibility="visible";
 recognition.start();
 ninshiki=true;
@@ -97,7 +97,7 @@ Chrome推奨です。誤認識などこのシステムを利用したことに�
 <div style="background-color: #ffffff; width: 100%; display: inline-block;"><div style="margin:8px;">
 <a class="makebtn" href="javascript:start();">開始</a>
 スピード:<input type="range" min="0" max="2" step="0.1" value="1" onchange="changeSpeed(this.value)">
-感度:<input type="range" min="0" max="1000" step="1" value="500" onchange="changeKando(this.value)">
+感度:<input type="range" min="0" max="10000" step="1" value="5000" onchange="changeKando(this.value)">
 <hr>
 <div id="dousa" style="display: inline-block; visibility: hidden;">動作中</div>
 <div id="ninshiki" style="color: #228b22; display: inline-block; visibility: hidden;">認識中</div>
