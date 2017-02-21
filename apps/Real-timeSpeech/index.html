@@ -13,8 +13,6 @@ recognition.lang = 'ja';
 recognition.onresult = function(event) {
 var text = event.results.item(0).item(0).transcript;
 recognition.stop();
-ninshiki=false;
-document.getElementById("ninshiki").style.visibility="hidden";
 document.getElementById("shusturyoku").style.visibility="visible";
 document.getElementById("result").innerHTML=text+"<br>"+document.getElementById("result").innerHTML;
 var synthes = new SpeechSynthesisUtterance();
@@ -27,16 +25,6 @@ speechSynthesis.speak(synthes);
 }
 recognition.onspeechend = function() {
 recognition.stop();
-ninshiki=false;
-document.getElementById("ninshiki").style.visibility="hidden";
-}
-
-recognition.onnomatch = function(event) {
-ninshiki=false;
-document.getElementById("ninshiki").style.visibility="hidden";
-}
-
-recognition.onerror = function(event) {
 ninshiki=false;
 document.getElementById("ninshiki").style.visibility="hidden";
 }
@@ -60,9 +48,13 @@ var all=0;
 for(var i=0; i<frequency.length; i++){
 all+=frequency[i];
 if(all>10000-kando&&!ninshiki){
-document.getElementById("ninshiki").style.visibility="visible";
+try{
 recognition.start();
+document.getElementById("ninshiki").style.visibility="visible";
 ninshiki=true;
+}catch(e){
+ninshiki=false;
+}
 }
 }
 requestAnimationFrame(animation);
