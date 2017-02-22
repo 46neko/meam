@@ -28,14 +28,6 @@ recognition.stop();
 ninshiki=false;
 document.getElementById("ninshiki").style.visibility="hidden";
 }
-recognition.onnomatch = function(e) {
-ninshiki=false;
-document.getElementById("ninshiki").style.visibility="hidden";
-}
-recognition.onerror = function(e) {
-ninshiki=false;
-document.getElementById("ninshiki").style.visibility="hidden";
-}
 function start(){
 if(document.getElementById("dousa").style.visibility!="visible"){
 document.getElementById("dousa").style.visibility="visible";
