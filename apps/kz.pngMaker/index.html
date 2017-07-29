@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+content="user-scalable=no">
 <title>MCPE絵画作成ツール</title>
 <script>
 var size;
@@ -30,29 +32,61 @@ var canvas = document.getElementById("editcanvas");
 var option = document.make.quality.options;
 var value;
 for(var i=0;i<option.length;i++){
-if(option[ i ].selected){
+if(option[i].selected){
 if(i==0){
 canvas.setAttribute("width", "256");
 canvas.setAttribute("height", "256");
+canvas.style.zoom = "2";
+document.getElementById("changeart").style.zoom = "2";
 var ctx = canvas.getContext("2d");
 var img = new Image();
-img.src = "mid.png?" + new Date().getTime();
+img.src = "16x16.png?" + new Date().getTime();
 img.crossOrigin = "Anonymous"; 
 img.onload = function() {
 ctx.drawImage(img, 0, 0);
 size=16;
 }
 }
-else if(i==1){
+if(i==1){
 canvas.setAttribute("width", "512");
 canvas.setAttribute("height", "512");
+canvas.style.zoom = "1";
+document.getElementById("changeart").style.zoom = "1";
 var ctx = canvas.getContext("2d");
 var img = new Image();
-img.src = "high.png?" + new Date().getTime();
+img.src = "32x32.png?" + new Date().getTime();
 img.crossOrigin = "Anonymous"; 
 img.onload = function() {
 ctx.drawImage(img, 0, 0);
 size=32;
+}
+}
+if(i==2){
+canvas.setAttribute("width", "1024");
+canvas.setAttribute("height", "1024");
+canvas.style.zoom = "0.5";
+document.getElementById("changeart").style.zoom = "0.5";
+var ctx = canvas.getContext("2d");
+var img = new Image();
+img.src = "64x64.png?" + new Date().getTime();
+img.crossOrigin = "Anonymous"; 
+img.onload = function() {
+ctx.drawImage(img, 0, 0);
+size=64;
+}
+}
+if(i==3){
+canvas.setAttribute("width", "2048");
+canvas.setAttribute("height", "2048");
+canvas.style.zoom = "0.25";
+document.getElementById("changeart").style.zoom = "0.25";
+var ctx = canvas.getContext("2d");
+var img = new Image();
+img.src = "128x128.png?" + new Date().getTime();
+img.crossOrigin = "Anonymous"; 
+img.onload = function() {
+ctx.drawImage(img, 0, 0);
+size=128;
 }
 }
 break;
@@ -171,6 +205,10 @@ width: 512px;
 標準(16×16)</option>
 <option value="high">
 高画質(32×32)</option>
+<option value="fine">
+微細(64×64)</option>
+<option value="fine">
+微細(128×128)</option>
 </select>
 </form>
 <hr>
@@ -196,10 +234,10 @@ var mouseX = e.pageX ;
 var mouseY = e.pageY ;
 var element = document.getElementById( "editcanvas" ) ;
 var rect = element.getBoundingClientRect() ;
-var positionX = rect.left + window.pageXOffset ;
-var positionY = rect.top + window.pageYOffset ;
-var x = Math.floor((mouseX - positionX)/size) ;
-var y = Math.floor((mouseY - positionY)/size) ;
+var positionX = rect.left*(32/size) + window.pageXOffset ;
+var positionY = rect.top*(32/size) + window.pageYOffset ;
+var x = Math.floor((mouseX - positionX)/32) ;
+var y = Math.floor((mouseY - positionY)/32) ;
 var canvas = document.getElementById("editcanvas");
 var ctx = canvas.getContext("2d");
 if(document.getElementById("trimborder")!=null)document.getElementById("trimborder").style.display="none";
@@ -483,7 +521,7 @@ ratio[1]=2;
 paste=true;
 }
 if(x>11){
-if(x==12)var imgdata = ctx.getImageData(12*size, (y-2)*size, 4*size, 3*size);
+var imgdata = ctx.getImageData(12*size, (y-2)*size, 4*size, 3*size);
 dx=12;
 dy=y-2;
 canvas = document.getElementById("changeart");
@@ -524,10 +562,10 @@ var mouseX = e.changedTouches[0].pageX ;
 var mouseY = e.changedTouches[0].pageY ;
 var element = document.getElementById( "editcanvas" ) ;
 var rect = element.getBoundingClientRect() ;
-var positionX = rect.left + window.pageXOffset ;
-var positionY = rect.top + window.pageYOffset ;
-var x = Math.floor((mouseX - positionX)/size) ;
-var y = Math.floor((mouseY - positionY)/size) ;
+var positionX = rect.left*(32/size) + window.pageXOffset ;
+var positionY = rect.top*(32/size) + window.pageYOffset ;
+var x = Math.floor((mouseX - positionX)/32) ;
+var y = Math.floor((mouseY - positionY)/32) ;
 var canvas = document.getElementById("editcanvas");
 var ctx = canvas.getContext("2d");
 if(document.getElementById("trimborder")!=null)document.getElementById("trimborder").style.display="none";
@@ -811,7 +849,7 @@ ratio[1]=2;
 paste=true;
 }
 if(x>11){
-if(x==12)var imgdata = ctx.getImageData(12*size, (y-2)*size, 4*size, 3*size);
+var imgdata = ctx.getImageData(12*size, (y-2)*size, 4*size, 3*size);
 dx=12;
 dy=y-2;
 canvas = document.getElementById("changeart");
