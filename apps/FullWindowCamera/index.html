@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -24,6 +24,25 @@ localVideo.src = window.URL.createObjectURL(localStream);
 console.error('mediaDevice.getUserMedia() error:', error);
 return;
 });
+
+var cnt = 0;
+function change(){
+navigator.mediaDevices.enumerateDevices()
+.then(function(data) {
+cnt++;
+if(cnt == data.length){
+cnt = 0;
+}
+navigator.mediaDevices.getUserMedia({video: {optional: [{sourceId: data[cnt].id }] }, audio: false})
+.then(function (stream) { // success
+localStream = stream;
+localVideo.src = window.URL.createObjectURL(localStream);
+}).catch(function (error) { // error
+console.error('mediaDevice.getUserMedia() error:', error);
+return;
+});
+});
+}
 
 var flag=false;
 function stretch(){
