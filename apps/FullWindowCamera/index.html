@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>全画面カメラ</title>
+<style>
+body{
+margin: 0px;
+}
+</style>
+</head>
+<body>
+<video id="local_video" style="width: 100%; height: auto;" autoplay mute></video>
+</body>
+<script type="text/javascript">
+let localVideo = document.getElementById('local_video');
+let localStream;
+
+navigator.mediaDevices.getUserMedia({video: true, audio: false})
+.then(function (stream) { // success
+localStream = stream;
+localVideo.src = window.URL.createObjectURL(localStream);
+}).catch(function (error) { // error
+console.error('mediaDevice.getUserMedia() error:', error);
+return;
+});
+
+var flag=false;
+function stretch(){
+if(flag){
+document.getElementById("local_video").setAttribute("style", "width: 100%; height: auto;");
+}else{
+document.getElementById("local_video").setAttribute("style", "width: auto; height: 100%;");
+}
+flag=!flag;
+}
+</script>
+</html>
