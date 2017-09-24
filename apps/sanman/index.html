@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>JavaScript Speed Test</title>
+<style>
+@font-face {
+font-family: "OmePlus-P";
+src: url('data/OmePlus-P-Gothic-light1.00000_subset.eot'),
+url('data/OmePlus-P-Gothic-light1.00000_subset.woff');
+}
+body {
+background-image: url("data/background.jpg");
+margin:0px;
+font-family: "OmePlus-P", "HGS明朝E", "ヒラギノ明朝 Pro W6","Hiragino Mincho Pro","ＭＳ Ｐ明朝",serif !important;
+}
+.button{
+color: #ffffff;
+background-color: #000030;
+padding: 5px;
+border: medium solid #000030;
+border-radius: 10px;
+text-decoration: none;
+font-size: 10vmin;
+}
+</style>
+<script>
+function play(){
+var audio = new Audio();
+audio.src = "data/sanman_2.mp3";
+audio.play();
+}
+</script>
+</head>
+<body>
+<div style="color: #ffffff; background-color: #000030;">
+<span style="font-size: 1.5rem;">3万円に聞こえるサイト</span>
+</div>
+<div style="width: 100%; text-align: center;">
+<a class="button" href="javascript:play();" style="position: relative; top: 40vh;">再生</a>
+</div>
+</body>
+</html>
